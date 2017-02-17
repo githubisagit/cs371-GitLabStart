@@ -30,6 +30,10 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+    private Button copyButton;
+    private TextView editText ;
+    private int myPosition ;
+
 
     private Button upperCase;
     private Button clear;
@@ -45,7 +49,12 @@ public class TextModActivity extends ActionBarActivity {
         setContentView(R.layout.activity_text_mod);
 
         // set instance variables for our widgets
-        imageView = (ImageView)findViewById(R.id.imageView);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        copyButton = (Button)findViewById(R.id.copyButton);
+        editText = (TextView)findViewById(R.id.editText);
+        myPosition = 0 ;
+
+
 
 
         upperCase = (Button) findViewById(R.id.upperCaseButton);
@@ -86,6 +95,7 @@ public class TextModActivity extends ActionBarActivity {
 
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
+        copyButton.setOnClickListener(new CopyButtonListener());
 
     }
 
@@ -131,6 +141,7 @@ public class TextModActivity extends ActionBarActivity {
                                    int position, long id) {
             // set the image to the one corresponding to the index selected by the spinner
             imageView.setImageBitmap(images.get(position));
+            myPosition = position ;
         }
 
         /**
@@ -142,6 +153,19 @@ public class TextModActivity extends ActionBarActivity {
             // your code here
         }
     }
+
+    private class CopyButtonListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
+            String textAtSpinnerPosition = spinnerNames[myPosition] ;
+
+            editText.append(textAtSpinnerPosition);
+
+        }
+    }
+
     private class upperCaseButtonListener implements  View.OnClickListener
     {
         public void onClick (View v)
