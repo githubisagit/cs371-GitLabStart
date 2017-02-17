@@ -16,8 +16,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
@@ -29,7 +32,12 @@ public class TextModActivity extends ActionBarActivity {
     private ImageView imageView; // the view that shows the image
     private TextView editText;
     private Button reverseButton;
+    private Button copyButton;
+    private int myPosition ;
 
+
+    private Button upperCase;
+    private Button clear;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -41,15 +49,24 @@ public class TextModActivity extends ActionBarActivity {
         setContentView(R.layout.activity_text_mod);
 
         // set instance variables for our widgets
-        imageView = (ImageView)findViewById(R.id.imageView);
+        imageView = (ImageView) findViewById(R.id.imageView);
+        copyButton = (Button)findViewById(R.id.copyButton);
         editText = (TextView)findViewById(R.id.editText);
         reverseButton = (Button)findViewById(R.id.reverseButton);
+
+
+
+        upperCase = (Button) findViewById(R.id.upperCaseButton);
+        clear = (Button) findViewById(R.id.clearButton);
+        editText = (TextView) findViewById(R.id.editText);
+        upperCase.setOnClickListener(new upperCaseButtonListener());
+        clear.setOnClickListener(new clearButtonListener());
 
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
         // get spinner object
-        Spinner spinner = (Spinner)findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
         // get array of strings
         String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
         // create adapter with the strings
@@ -68,8 +85,8 @@ public class TextModActivity extends ActionBarActivity {
         // loop through, adding one image per string
         for (int i = 0; i < spinnerNames.length; i++) {
             // determine the index; use 0 if out of bounds
-            int id = imageIds2.getResourceId(i,0);
-            if (id == 0) id = imageIds2.getResourceId(0,0);
+            int id = imageIds2.getResourceId(i, 0);
+            if (id == 0) id = imageIds2.getResourceId(0, 0);
             // load the image; add to arraylist
             Bitmap img = BitmapFactory.decodeResource(getResources(), id);
             images.add(img);
@@ -116,25 +133,38 @@ public class TextModActivity extends ActionBarActivity {
 
         /**
          * @see android.widget.AdapterView.OnItemSelectedListener#onItemSelected(
-         *                  android.widget.AdapterView, android.view.View, int, long)
+         *android.widget.AdapterView, android.view.View, int, long)
          */
         @Override
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView,
                                    int position, long id) {
             // set the image to the one corresponding to the index selected by the spinner
             imageView.setImageBitmap(images.get(position));
+            myPosition = position ;
         }
 
         /**
          * @see android.widget.AdapterView.OnItemSelectedListener#onNothingSelected(
-         *                  android.widget.AdapterView)
+         *android.widget.AdapterView)
          */
         @Override
         public void onNothingSelected(AdapterView<?> parentView) {
+            //String spinnerText = spinner.getSelectedItem().toString();
+
             // your code here
         }
+    }
 
+    private class CopyButtonListener implements View.OnClickListener {
 
+        @Override
+        public void onClick(View v) {
+            String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
+            String textAtSpinnerPosition = spinnerNames[myPosition] ;
+
+            editText.append(textAtSpinnerPosition);
+
+        }
     }
 
     private class ReverseButtonListener implements View.OnClickListener {
@@ -157,4 +187,24 @@ public class TextModActivity extends ActionBarActivity {
         }
 
     }
+
+    private class upperCaseButtonListener implements  View.OnClickListener
+    {
+        public void onClick (View v)
+        {
+            editText.setText(editText.getText().toString().toUpperCase());
+        }
+
+
+    }
+    private class clearButtonListener implements  View.OnClickListener
+    {
+        public void onClick (View v)
+        {
+            editText.setText(" ");
+        }
+
+
+    }
+
 }
