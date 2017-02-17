@@ -16,8 +16,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
@@ -28,6 +31,9 @@ public class TextModActivity extends ActionBarActivity {
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
 
+    private Button upperCase;
+    private Button clear;
+    private TextView editText;
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -40,6 +46,14 @@ public class TextModActivity extends ActionBarActivity {
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
+
+
+        upperCase = (Button) findViewById(R.id.upperCaseButton);
+        clear = (Button) findViewById(R.id.clearButton);
+        editText = (TextView) findViewById(R.id.editText);
+        upperCase.setOnClickListener(new upperCaseButtonListener());
+        clear.setOnClickListener(new clearButtonListener());
+
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
@@ -128,4 +142,23 @@ public class TextModActivity extends ActionBarActivity {
             // your code here
         }
     }
+    private class upperCaseButtonListener implements  View.OnClickListener
+    {
+        public void onClick (View v)
+        {
+            editText.setText(editText.getText().toString().toUpperCase());
+        }
+
+
+    }
+    private class clearButtonListener implements  View.OnClickListener
+    {
+        public void onClick (View v)
+        {
+            editText.setText(" ");
+        }
+
+
+    }
+
 }
