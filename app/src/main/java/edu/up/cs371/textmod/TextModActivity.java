@@ -95,6 +95,7 @@ public class TextModActivity extends ActionBarActivity {
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
         reverseButton.setOnClickListener(new ReverseButtonListener());
+        copyButton.setOnClickListener(new CopyButtonListener());
 
     }
 
