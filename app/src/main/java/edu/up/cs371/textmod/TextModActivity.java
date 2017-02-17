@@ -16,8 +16,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
@@ -27,6 +30,8 @@ public class TextModActivity extends ActionBarActivity {
 
     // instance variables containing widgets
     private ImageView imageView; // the view that shows the image
+    private TextView editText;
+    private Button reverseButton;
 
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -40,6 +45,9 @@ public class TextModActivity extends ActionBarActivity {
 
         // set instance variables for our widgets
         imageView = (ImageView)findViewById(R.id.imageView);
+        editText = (TextView)findViewById(R.id.editText);
+        reverseButton = (Button)findViewById(R.id.reverseButton);
+
 
         // Set up the spinner so that it shows the names in the spinner array resources
         //
@@ -72,6 +80,7 @@ public class TextModActivity extends ActionBarActivity {
 
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
+        reverseButton.setOnClickListener(new ReverseButtonListener());
 
     }
 
@@ -127,5 +136,28 @@ public class TextModActivity extends ActionBarActivity {
         public void onNothingSelected(AdapterView<?> parentView) {
             // your code here
         }
+
+
+    }
+
+    private class ReverseButtonListener implements View.OnClickListener {
+
+        @Override
+        public void onClick( View v ) {
+
+            String orig = editText.getText().toString();
+            String reversed = "";
+
+
+
+            for( int i = (orig.length() - 1); i >= 0; i--)
+            {
+                reversed = reversed + orig.charAt( i );
+            }
+
+            editText.setText(reversed);
+
+        }
+
     }
 }
