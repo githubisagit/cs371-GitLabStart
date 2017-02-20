@@ -37,6 +37,7 @@ public class TextModActivity extends ActionBarActivity {
     private TextView editText;
     private Button reverseButton;
     private Button copyButton;
+    private Button removePunct;
     private int myPosition ;
 
 
@@ -67,6 +68,7 @@ public class TextModActivity extends ActionBarActivity {
 
         upperCase = (Button) findViewById(R.id.upperCaseButton);
         clear = (Button) findViewById(R.id.clearButton);
+        removePunct = (Button) findViewById(R.id.removePunct);
         editText = (TextView) findViewById(R.id.editText);
         upperCase.setOnClickListener(new upperCaseButtonListener());
         clear.setOnClickListener(new clearButtonListener());
@@ -105,6 +107,7 @@ public class TextModActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new MySpinnerListener());
         reverseButton.setOnClickListener(new ReverseButtonListener());
         copyButton.setOnClickListener(new CopyButtonListener());
+        removePunct.setOnClickListener(new removePuntuationButtonListener());
 
     }
 
@@ -222,5 +225,18 @@ public class TextModActivity extends ActionBarActivity {
 
 
     }
+
+
+
+    private class removePuntuationButtonListener implements  View.OnClickListener
+    {
+        public void onClick (View v)
+        {
+            editText.setText(editText.getText().toString().replaceAll("[^a-zA-Z]",""));
+        }
+
+
+    }
+
 
 }
