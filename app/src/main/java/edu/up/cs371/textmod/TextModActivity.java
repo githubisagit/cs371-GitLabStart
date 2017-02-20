@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class TextModActivity extends ActionBarActivity {
 
@@ -37,7 +38,9 @@ public class TextModActivity extends ActionBarActivity {
     private TextView editText;
     private Button reverseButton;
     private Button copyButton;
+    private Button orderButton;//
     private int myPosition ;
+
 
 
     private Button upperCase;
@@ -63,7 +66,7 @@ public class TextModActivity extends ActionBarActivity {
         copyButton = (Button)findViewById(R.id.copyButton);
         editText = (TextView)findViewById(R.id.editText);
         reverseButton = (Button)findViewById(R.id.reverseButton);
-
+        orderButton = (Button)findViewById((R.id.orderButton));
 
 
         upperCase = (Button) findViewById(R.id.upperCaseButton);
@@ -106,6 +109,7 @@ public class TextModActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new MySpinnerListener());
         reverseButton.setOnClickListener(new ReverseButtonListener());
         copyButton.setOnClickListener(new CopyButtonListener());
+        orderButton.setOnClickListener(new OrderButtonListener());
 
     }
 
@@ -135,6 +139,25 @@ public class TextModActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class OrderButtonListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Random rand = new Random();
+
+            String start;
+            String end;
+            int pivot = rand.nextInt(editText.getText().length()-1) + 1;
+
+            start = editText.getText().toString().subSequence(0,pivot).toString();
+            end = editText.getText().toString().subSequence(pivot,editText.getText().length()).toString();
+
+
+
+            editText.setText(end+start);
+        }
     }
 
     /**
