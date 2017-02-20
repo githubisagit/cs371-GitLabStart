@@ -38,7 +38,6 @@ public class TextModActivity extends ActionBarActivity {
     private Button reverseButton;
     private Button copyButton;
     private int myPosition ;
-    private Button alternateCaps;
 
 
     private Button upperCase;
@@ -56,8 +55,7 @@ public class TextModActivity extends ActionBarActivity {
 
         lowerCase = (Button) findViewById(R.id.lowerButton);
         lowerCase.setOnClickListener(new lowerCaseButtonListener());
-        alternateCaps = (Button) findViewById(R.id.alternateCapsButton);
-        alternateCaps.setOnClickListener(new alternateCapsButtonListener());
+
 
 
         // set instance variables for our widgets
@@ -223,19 +221,5 @@ public class TextModActivity extends ActionBarActivity {
         }
     }
 
-    private class alternateCapsButtonListener implements View.OnClickListener {
-        public void onClick(View v) {
-            String s1 = editText.getText().toString();
-            s1 = s1.toLowerCase();
-            String s2 = "";
-            for(int i = 0; i < s1.length(); i++) {
-                if(i % 2 == 0) {
-                    s2 += s1.substring(i, i+1).toUpperCase();
-                } else {
-                    s2 += s1.substring(i, i+1);
-                }
-            }
-            editText.setText(s2);
-        }
-    }
+
 }
