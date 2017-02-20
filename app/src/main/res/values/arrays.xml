@@ -11,6 +11,7 @@
         <item>@mipmap/vegdahl</item>
         <item>@mipmap/hero</item>
         <item>@mipmap/pouya</item>
+        <item>@mipmap/jonthegoat</item>
     </array>
 
     <string-array name="spinner_names">
@@ -19,6 +20,7 @@
         <item>Dr. Steven Vegdahl</item>
         <item>Sean Tan</item>
         <item>Pouya Rad</item>
+        <item>Malcolm Roux</item>
     </string-array>
 
 </resources>
