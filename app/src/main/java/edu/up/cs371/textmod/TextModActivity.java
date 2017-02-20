@@ -27,6 +27,7 @@ public class TextModActivity extends ActionBarActivity {
 
 
     private Button lowerCase;
+    private Button noSpacesButton ;
 
 
     // array-list that contains our images to display
@@ -37,11 +38,12 @@ public class TextModActivity extends ActionBarActivity {
     private TextView editText;
     private Button reverseButton;
     private Button copyButton;
-    private int myPosition ;
+    private int myPosition;
 
 
     private Button upperCase;
     private Button clear;
+
     /**
      * @see android.app.Activity#onCreate(android.os.Bundle)
      */
@@ -59,10 +61,10 @@ public class TextModActivity extends ActionBarActivity {
 
         // set instance variables for our widgets
         imageView = (ImageView) findViewById(R.id.imageView);
-        copyButton = (Button)findViewById(R.id.copyButton);
-        editText = (TextView)findViewById(R.id.editText);
-        reverseButton = (Button)findViewById(R.id.reverseButton);
-
+        copyButton = (Button) findViewById(R.id.copyButton);
+        editText = (TextView) findViewById(R.id.editText);
+        reverseButton = (Button) findViewById(R.id.reverseButton);
+        noSpacesButton = (Button)findViewById(R.id.button);
 
 
         upperCase = (Button) findViewById(R.id.upperCaseButton);
@@ -70,6 +72,7 @@ public class TextModActivity extends ActionBarActivity {
         editText = (TextView) findViewById(R.id.editText);
         upperCase.setOnClickListener(new upperCaseButtonListener());
         clear.setOnClickListener(new clearButtonListener());
+        noSpacesButton.setOnClickListener(new noSpacesButtonListener());
 
 
         // Set up the spinner so that it shows the names in the spinner array resources
@@ -150,7 +153,7 @@ public class TextModActivity extends ActionBarActivity {
                                    int position, long id) {
             // set the image to the one corresponding to the index selected by the spinner
             imageView.setImageBitmap(images.get(position));
-            myPosition = position ;
+            myPosition = position;
         }
 
         /**
@@ -164,6 +167,7 @@ public class TextModActivity extends ActionBarActivity {
             // your code here
         }
     }
+
     private class lowerCaseButtonListener implements View.OnClickListener {
         public void onClick(View v) {
 
@@ -176,7 +180,7 @@ public class TextModActivity extends ActionBarActivity {
         @Override
         public void onClick(View v) {
             String[] spinnerNames = getResources().getStringArray(R.array.spinner_names);
-            String textAtSpinnerPosition = spinnerNames[myPosition] ;
+            String textAtSpinnerPosition = spinnerNames[myPosition];
 
             editText.append(textAtSpinnerPosition);
 
@@ -186,16 +190,14 @@ public class TextModActivity extends ActionBarActivity {
     private class ReverseButtonListener implements View.OnClickListener {
 
         @Override
-        public void onClick( View v ) {
+        public void onClick(View v) {
 
             String orig = editText.getText().toString();
             String reversed = "";
 
 
-
-            for( int i = (orig.length() - 1); i >= 0; i--)
-            {
-                reversed = reversed + orig.charAt( i );
+            for (int i = (orig.length() - 1); i >= 0; i--) {
+                reversed = reversed + orig.charAt(i);
             }
 
             editText.setText(reversed);
@@ -204,23 +206,28 @@ public class TextModActivity extends ActionBarActivity {
 
     }
 
-    private class upperCaseButtonListener implements  View.OnClickListener
-    {
-        public void onClick (View v)
-        {
+    private class upperCaseButtonListener implements View.OnClickListener {
+        public void onClick(View v) {
             editText.setText(editText.getText().toString().toUpperCase());
         }
 
 
     }
-    private class clearButtonListener implements  View.OnClickListener
-    {
-        public void onClick (View v)
-        {
+
+    private class clearButtonListener implements View.OnClickListener {
+        public void onClick(View v) {
             editText.setText(" ");
         }
 
 
+    }
+
+    private class noSpacesButtonListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            String noSpacesText = editText.getText().toString().replace(" ", "");
+            editText.setText(noSpacesText) ;
+        }
     }
 
 }
