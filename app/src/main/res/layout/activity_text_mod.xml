@@ -143,6 +143,17 @@
             android:textColor="@color/button_text_color"
             android:textSize="@dimen/button_font_size" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REMOVE PUNCTUATION"
+        android:id="@+id/removePunct"
+        android:layout_gravity="center_horizontal" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:layout_weight="1"/>
         <Space
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -226,12 +237,6 @@
         android:layout_width="match_parent"
         android:layout_height="0sp"
         android:layout_weight="1"/>
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New CheckBox"
-        android:id="@+id/checkBox" />
 
 
 </LinearLayout>

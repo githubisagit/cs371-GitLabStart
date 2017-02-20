@@ -39,8 +39,8 @@ public class TextModActivity extends ActionBarActivity {
     private Button reverseButton;
     private Button copyButton;
     private Button orderButton;//
+    private Button removePunct;
     private int myPosition ;
-
 
 
     private Button upperCase;
@@ -60,7 +60,6 @@ public class TextModActivity extends ActionBarActivity {
         lowerCase.setOnClickListener(new lowerCaseButtonListener());
 
 
-
         // set instance variables for our widgets
         imageView = (ImageView) findViewById(R.id.imageView);
         copyButton = (Button)findViewById(R.id.copyButton);
@@ -71,6 +70,7 @@ public class TextModActivity extends ActionBarActivity {
 
         upperCase = (Button) findViewById(R.id.upperCaseButton);
         clear = (Button) findViewById(R.id.clearButton);
+        removePunct = (Button) findViewById(R.id.removePunct);
         editText = (TextView) findViewById(R.id.editText);
         upperCase.setOnClickListener(new upperCaseButtonListener());
         clear.setOnClickListener(new clearButtonListener());
@@ -109,6 +109,7 @@ public class TextModActivity extends ActionBarActivity {
         spinner.setOnItemSelectedListener(new MySpinnerListener());
         reverseButton.setOnClickListener(new ReverseButtonListener());
         copyButton.setOnClickListener(new CopyButtonListener());
+        removePunct.setOnClickListener(new removePuntuationButtonListener());
         orderButton.setOnClickListener(new OrderButtonListener());
 
     }
@@ -239,9 +240,24 @@ public class TextModActivity extends ActionBarActivity {
     }
     private class clearButtonListener implements  View.OnClickListener
     {
-        public void onClick (View v) {
+        public void onClick (View v)
+        {
             editText.setText(" ");
         }
+
+
+    }
+
+
+
+    private class removePuntuationButtonListener implements  View.OnClickListener
+    {
+        public void onClick (View v)
+        {
+            editText.setText(editText.getText().toString().replaceAll("[^a-zA-Z]",""));
+        }
+
+
     }
 
 
