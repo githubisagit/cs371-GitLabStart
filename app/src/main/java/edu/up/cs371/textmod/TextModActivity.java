@@ -236,6 +236,8 @@ public class TextModActivity extends ActionBarActivity {
                 }
             }
             editText.setText(s2);
+
+
         }
     }
 
