@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/cs371-GitLabStart2.iml" filepath="$PROJECT_DIR$/cs371-GitLabStart2.iml" />
       <module fileurl="file://$PROJECT_DIR$/cs371-GitLabStarter-master.iml" filepath="$PROJECT_DIR$/cs371-GitLabStarter-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cs371-GitLabStartstart.iml" filepath="$PROJECT_DIR$/cs371-GitLabStartstart.iml" />
     </modules>
   </component>
 </project>

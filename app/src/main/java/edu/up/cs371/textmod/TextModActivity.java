@@ -28,6 +28,7 @@ public class TextModActivity extends ActionBarActivity {
 
 
     private Button lowerCase;
+    private Button noSpacesButton ;
 
 
     // array-list that contains our images to display
@@ -62,9 +63,10 @@ public class TextModActivity extends ActionBarActivity {
 
         // set instance variables for our widgets
         imageView = (ImageView) findViewById(R.id.imageView);
-        copyButton = (Button)findViewById(R.id.copyButton);
-        editText = (TextView)findViewById(R.id.editText);
-        reverseButton = (Button)findViewById(R.id.reverseButton);
+        copyButton = (Button) findViewById(R.id.copyButton);
+        editText = (TextView) findViewById(R.id.editText);
+        reverseButton = (Button) findViewById(R.id.reverseButton);
+        noSpacesButton = (Button)findViewById(R.id.button);
         orderButton = (Button)findViewById((R.id.orderButton));
 
 
@@ -74,6 +76,7 @@ public class TextModActivity extends ActionBarActivity {
         editText = (TextView) findViewById(R.id.editText);
         upperCase.setOnClickListener(new upperCaseButtonListener());
         clear.setOnClickListener(new clearButtonListener());
+        noSpacesButton.setOnClickListener(new noSpacesButtonListener());
 
 
         // Set up the spinner so that it shows the names in the spinner array resources
@@ -246,6 +249,14 @@ public class TextModActivity extends ActionBarActivity {
         }
 
 
+    }
+
+    private class noSpacesButtonListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            String noSpacesText = editText.getText().toString().replace(" ", "");
+            editText.setText(noSpacesText) ;
+        }
     }
 
 
